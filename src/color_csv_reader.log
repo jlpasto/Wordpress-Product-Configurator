@@ -1,0 +1,13 @@
+2025-07-31 03:02:31,679 - ERROR - "CSV must contain 'Couleur' and 'RGBA' columns."
+2025-07-31 03:05:10,500 - ERROR - "CSV must contain 'Couleur' and 'RGBA' columns."
+2025-07-31 03:05:32,767 - ERROR - "CSV must contain 'Couleur' and 'RGBA' columns."
+2025-07-31 03:09:37,935 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 03:11:06,704 - INFO - Application initialized successfully.
+2025-07-31 03:11:08,312 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 03:11:08,322 - INFO - Added image input set #1
+2025-07-31 03:12:35,214 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 03:12:35,220 - INFO - Added image input set #2
+2025-07-31 03:13:31,438 - INFO - Application initialized successfully.
+2025-07-31 03:13:32,743 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 03:13:32,746 - INFO - Added image input set #1
+2025-07-31 03:14:02,118 - INFO - Application initialized successfully.
