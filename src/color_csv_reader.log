@@ -11,3 +11,11 @@
 2025-07-31 03:13:32,743 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-07-31 03:13:32,746 - INFO - Added image input set #1
 2025-07-31 03:14:02,118 - INFO - Application initialized successfully.
+2025-07-31 03:14:51,826 - INFO - Application initialized successfully.
+2025-07-31 03:15:41,723 - INFO - Application initialized successfully.
+2025-07-31 03:17:42,834 - INFO - Application initialized successfully.
+2025-07-31 03:18:09,777 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 03:18:09,780 - INFO - Added image input set #1
+2025-07-31 03:18:16,991 - INFO - Form submitted: {'Configurator Name': 'Test', 'Style': 'Accordion Style 2', 'Custom CSS': 'css', 'Custom JS': 'js', 'Form': 'Cart Form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Image Layer URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/Terre-verte-de-NicI%C2%A7oisie-15g-Bleu-kossoghol-3g-2-1.png', 'Images': [{'Motif': '', 'Date': '', 'Width': '', 'Height': '', 'Product URL': ''}]}
+2025-07-31 03:18:53,862 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 03:18:53,865 - INFO - Added image input set #2

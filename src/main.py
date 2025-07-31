@@ -30,7 +30,7 @@ class ConfiguratorApp:
 
     # --- Section 1: Global Settings ---
     def create_global_settings(self):
-        global_frame = ttk.LabelFrame(self.root, text="Section 1: Global Settings", padding=(10, 5))
+        global_frame = ttk.LabelFrame(self.root, text="Global Settings", padding=(10, 5))
         global_frame.pack(fill="x", padx=10, pady=5)
 
         ttk.Label(global_frame, text="Name a Configurator:").grid(row=0, column=0, sticky="w")
@@ -63,7 +63,7 @@ class ConfiguratorApp:
 
     # --- Section 2: Group Layer 1 ---
     def create_group_layer(self):
-        group_frame = ttk.LabelFrame(self.root, text="Section 2: Group Layer 1", padding=(10, 5))
+        group_frame = ttk.LabelFrame(self.root, text="Group Layer 1", padding=(10, 5))
         group_frame.pack(fill="x", padx=10, pady=5)
 
         ttk.Label(group_frame, text="Required:").grid(row=0, column=0, sticky="w")
