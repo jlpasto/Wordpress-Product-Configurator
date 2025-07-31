@@ -94,3 +94,9 @@
 2025-07-31 20:20:13,952 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-07-31 20:20:13,952 - INFO - Sections data: 2
 2025-07-31 20:20:14,033 - INFO - Form submitted: {'Configurator Name': 'Test', 'Style': 'Accordion Style 2', 'Custom CSS': 'css', 'Custom JS': 'js', 'Form': 'Cart Form', 'Base Price': '200', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'imagelinl', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '2', 'Height': '2', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/5-Background', 'Motif': '5', 'Motif No': 'Background', 'Date': '2025'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '3', 'Height': '3', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/5-Motif 1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025'}]}
+2025-07-31 20:21:28,387 - INFO - Application initialized successfully.
+2025-07-31 20:21:38,553 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 20:21:38,556 - INFO - Added image input set #1
+2025-07-31 20:21:48,568 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 20:21:48,568 - INFO - Sections data: 1
+2025-07-31 20:21:48,614 - INFO - Form submitted: {'Configurator Name': 'test', 'Style': 'Accordion Style 2', 'Custom CSS': 't', 'Custom JS': 't', 'Form': 'Cart Form', 'Base Price': '3', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'eww', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '8', 'Height': '8', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025'}]}
