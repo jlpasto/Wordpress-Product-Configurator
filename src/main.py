@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from read_color import read_color_csv
+from generate_json import ConfiguratorJSONGenerator
 import logging
+import json
 
 # Configure logging
 logging.basicConfig(
@@ -18,6 +20,14 @@ class ConfiguratorApp:
         self.root = root
         self.root.title("Configurator")
         self.image_fields = []
+        self.couleur_list = []
+        self.rgba_color_list = []
+
+        #couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
+        # self.couleur_list = couleur_list
+        # self.rgba_color_list = rgba_color_list
+        # self.couleur_rgba_dict = couleur_rgba_dict
+        
 
         try:
             self.create_global_settings()
@@ -114,8 +124,7 @@ class ConfiguratorApp:
             height_entry = self._create_labeled_entry(img_frame, "Height:", 4)
 
             # Color Dropdown
-            couleur_list, rgba_color_list= read_color_csv(CORRESPONDANCE_RGBA_DIR)
-
+            couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
             ttk.Label(img_frame, text="Sample Color:").grid(row=5, column=0, sticky="w")
             color_combo = ttk.Combobox(img_frame, values=couleur_list, textvariable=color_var, state="readonly")
             color_combo.grid(row=5, column=1, padx=5, pady=2)
@@ -153,7 +162,8 @@ class ConfiguratorApp:
         motif_num = fields["motif_num"].get().strip()
         date_uploaded = fields["date"].get().strip()
         color = fields["color"].get().strip()
-        image_name = self.replace_spaces_with_dash(f"{motif_name}-{motif_num}-{color}.png")
+        #image_name = self.replace_spaces_with_dash(f"{motif_name}-{motif_num}-{color}.png")
+        image_name = self.replace_spaces_with_dash(f"{motif_name}-{motif_num}")
 
         url_value = ""
         if motif_name and date_uploaded and color and motif_num:
@@ -186,18 +196,69 @@ class ConfiguratorApp:
                 "Base Price": self.base_price.get(),
                 "Required": self.required_var.get(),
                 "Hide Control": self.hide_var.get(),
-                "Image Layer URL": self.image_url.get(),
-                "Images": [
+                "Group Layer Image URL": self.image_url.get(),
+                "Sections": [
                     {
-                        "Motif": img["motif"].get(),
-                        "Date": img["date"].get(),
+                        "Section No": f"Section {i+1}",
+                        "Custom Class": f"productGroup group{i+1}",
                         "Width": img["width"].get(),
                         "Height": img["height"].get(),
-                        "Product URL": img["product_url"].get()
+                        "Product URL": f"{BASE_URL}/{img["date"].get()}/{img["motif"].get()}-{img["motif_num"].get()}".replace(" ", "-"),
+                        "Motif": img["motif"].get(),
+                        "Motif No": img["motif_num"].get(),
+                        "Date": img["date"].get(),
                     }
-                    for img in self.image_fields
+                    for i, img in enumerate(self.image_fields)
                 ]
             }
+
+
+
+
+            group_layer_image = {
+                "image_id": 100000,
+                "src": data["Group Layer Image URL"],
+                "width": 2437, # change this use variable
+                "height": 2560
+            }
+
+            sections_data = []
+            couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
+            # Loop through data_list and build sections_data
+            for section in data["Sections"]:
+                section = {
+                    "name": section["Section No"],
+                    "custom_class": section["Custom Class"],
+                    "children": [
+                        {"image_id": 100000 + j, 
+                         "src": f"{section["Product URL"]}-{couleur}.png", 
+                         "width": f"{section["Width"]}", 
+                         "height":  f"{section["Height"]}", 
+                         "color": rgba}
+                        for j, (couleur, rgba) in enumerate(couleur_rgba_dict.items())  # ✅ iterate key-value pairs
+                    ],
+    
+                }
+                sections_data.append(section)
+
+            logging.info(f"Sections data: {len(sections_data)}")
+
+            generator = ConfiguratorJSONGenerator(
+                title=data["Configurator Name"],
+                base_price=data["Base Price"],
+                config_style=data["Custom CSS"],
+                form = data["Form"], 
+                group_layer_image=group_layer_image,
+                sections_data=sections_data
+                )
+            
+            # ✅ Generate JSON data
+            json_data = generator.generate()
+            print(json.dumps(json_data, indent=2))
+
+            # ✅ Save to file
+            generator.save_to_file("configurator.json")
+
             logging.info(f"Form submitted: {data}")
             messagebox.showinfo("Success", "Form submitted successfully! Check configurator.log for details.")
         except Exception as e:

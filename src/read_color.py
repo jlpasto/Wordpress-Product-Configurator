@@ -6,6 +6,7 @@ import os
 def read_color_csv(file_path, delimiter=';'):
     couleur_list = []
     rgba_color_list = []
+    couleur_rgba_dict = {}
 
     try:
         # Check if file exists
@@ -22,8 +23,11 @@ def read_color_csv(file_path, delimiter=';'):
                     raise KeyError("CSV must contain 'Couleur' and 'RGBA' columns.")
 
                 for row in reader:
-                    couleur_list.append(str(row['Couleur']).strip())
-                    rgba_color_list.append(str(row['RGBA']).strip())
+                    couleur = str(row['Couleur']).strip()
+                    rgba = str(row['RGBA']).strip()
+                    couleur_list.append(couleur)
+                    rgba_color_list.append(rgba)
+                    couleur_rgba_dict[couleur] = rgba  # ✅ key-value pair
 
                 logging.info(f"Successfully read {len(couleur_list)} color entries from {file_path}")
 
@@ -41,7 +45,7 @@ def read_color_csv(file_path, delimiter=';'):
         logging.error(f"Unexpected error: {e}")
         print(f"Unexpected error: {e}")
 
-    return couleur_list, rgba_color_list
+    return couleur_list, rgba_color_list, couleur_rgba_dict
 
 
 # # Example usage
