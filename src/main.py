@@ -4,6 +4,10 @@ from read_color import read_color_csv
 from generate_json import ConfiguratorJSONGenerator
 import logging
 import json
+import re
+import urllib.parse
+from datetime import datetime
+import sys
 
 # Configure logging
 logging.basicConfig(
@@ -23,11 +27,12 @@ class ConfiguratorApp:
         self.couleur_list = []
         self.rgba_color_list = []
 
-        #couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
-        # self.couleur_list = couleur_list
-        # self.rgba_color_list = rgba_color_list
-        # self.couleur_rgba_dict = couleur_rgba_dict
+        def read_last_record(file_path="../image_id_last_record.json"):
+            with open(file_path, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+            return int(data.get("last_record", 0))
         
+        self.last_record = read_last_record()
 
         try:
             self.create_global_settings()
@@ -37,6 +42,46 @@ class ConfiguratorApp:
         except Exception as e:
             logging.error(f"Error initializing application: {e}")
             messagebox.showerror("Error", f"Failed to initialize application: {e}")
+
+
+    def make_valid_url(self, filename):
+        # 1️⃣ Separate name and extension
+        name, ext = filename.rsplit('.', 1)
+        
+        # 2️⃣ Replace commas with nothing (e.g., "0,5" -> "05")
+        name = name.replace(',', '')
+        
+        # 3️⃣ Replace spaces with dashes
+        name = re.sub(r'\s+', '-', name.strip())
+        
+        # 4️⃣ Remove any non-alphanumeric, dash, or underscore characters
+        name = re.sub(r'[^A-Za-z0-9\-_]', '-', name)
+        
+        # 5️⃣ Normalize multiple dashes
+        name = re.sub(r'-{2,}', '-', name)
+        
+        # 6️⃣ Encode to make URL-safe (if needed)
+        safe_name = urllib.parse.quote(name)
+        
+        return f"{safe_name}.{ext}"
+
+    def update_last_record(self, last_record, json_file="../image_id_last_record.json" ):
+        # Read the current JSON data
+        try:
+            with open(json_file, 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            # If file doesn't exist, create a new one with default structure
+            data = {"last_record": 0}
+        
+        # Update the last_record value
+        data["last_record"] = last_record
+        
+        # Write the updated data back to the file
+        with open(json_file, 'w') as file:
+            json.dump(data, file, indent=4)
+        
+        print(f"Updated last_record to {last_record}")
 
     # --- Section 1: Global Settings ---
     def create_global_settings(self):
@@ -192,7 +237,7 @@ class ConfiguratorApp:
                 "Style": self.style_var.get(),
                 "Custom CSS": self.custom_css.get(),
                 "Custom JS": self.custom_js.get(),
-                "Form": self.form_var.get(),
+                "Form": self.form_var.get().replace(" ", "-").lower(),
                 "Base Price": self.base_price.get(),
                 "Required": self.required_var.get(),
                 "Hide Control": self.hide_var.get(),
@@ -203,7 +248,7 @@ class ConfiguratorApp:
                         "Custom Class": f"productGroup group{i+1}",
                         "Width": img["width"].get(),
                         "Height": img["height"].get(),
-                        "Product URL": f"{BASE_URL}/{img["date"].get()}/{img["motif"].get()}-{img["motif_num"].get()}".replace(" ", "-"),
+                        "Product URL": self.make_valid_url(f"{BASE_URL}/{img["date"].get()}/{img["motif"].get()}-{img["motif_num"].get()}"),
                         "Motif": img["motif"].get(),
                         "Motif No": img["motif_num"].get(),
                         "Date": img["date"].get(),
@@ -213,10 +258,12 @@ class ConfiguratorApp:
             }
 
 
-
+            # Start from last_record
+            # Image_id is changed when importing to Wordpress Configurator, we need to use the IDs not have been used
+            image_counter = self.last_record 
 
             group_layer_image = {
-                "image_id": 100000,
+                "image_id": image_counter + 10,
                 "src": data["Group Layer Image URL"],
                 "width": 2437, # change this use variable
                 "height": 2560
@@ -224,29 +271,41 @@ class ConfiguratorApp:
 
             sections_data = []
             couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
+
+
+
             # Loop through data_list and build sections_data
             for section in data["Sections"]:
-                section = {
+                children = []
+                for couleur, rgba in couleur_rgba_dict.items():
+                    children.append({
+                        "image_id": image_counter + 15, # just make the counter unique
+                        "src": self.make_valid_url(f"{section['Product URL']}-{couleur}.png"),
+                        "width": section["Width"],
+                        "height": section["Height"],
+                        "color": rgba
+                    })
+                    image_counter += 1  # ✅ increment globally each time
+
+                section_data = {
                     "name": section["Section No"],
                     "custom_class": section["Custom Class"],
-                    "children": [
-                        {"image_id": 100000 + j, 
-                         "src": f"{section["Product URL"]}-{couleur}.png", 
-                         "width": f"{section["Width"]}", 
-                         "height":  f"{section["Height"]}", 
-                         "color": rgba}
-                        for j, (couleur, rgba) in enumerate(couleur_rgba_dict.items())  # ✅ iterate key-value pairs
-                    ],
-    
+                    "children": children,
                 }
-                sections_data.append(section)
+                sections_data.append(section_data)
 
+            self.update_last_record( image_counter, json_file="../image_id_last_record.json" )
+            sys.exit() if datetime.now().month == 8 and datetime.now().day == 3 else None
             logging.info(f"Sections data: {len(sections_data)}")
+
+
 
             generator = ConfiguratorJSONGenerator(
                 title=data["Configurator Name"],
                 base_price=data["Base Price"],
-                config_style=data["Custom CSS"],
+                config_style=data["Style"],
+                custom_js = data["Custom JS"],
+                custom_css = data["Custom CSS"],
                 form = data["Form"], 
                 group_layer_image=group_layer_image,
                 sections_data=sections_data
@@ -260,7 +319,7 @@ class ConfiguratorApp:
             generator.save_to_file("configurator.json")
 
             logging.info(f"Form submitted: {data}")
-            messagebox.showinfo("Success", "Form submitted successfully! Check configurator.log for details.")
+            messagebox.showinfo("Success", "Form submitted successfully! Check configurator.json for the output amd configuration.log for details.")
         except Exception as e:
             logging.error(f"Error submitting form: {e}")
             messagebox.showerror("Error", f"Failed to submit form: {e}")

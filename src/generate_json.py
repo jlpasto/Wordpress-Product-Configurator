@@ -2,10 +2,12 @@ import json
 import uuid
 
 class ConfiguratorJSONGenerator:
-    def __init__(self, title, base_price, config_style, form, group_layer_image, sections_data):
+    def __init__(self, title, base_price, config_style, custom_js, custom_css, form, group_layer_image, sections_data):
         self.title = title
         self.base_price = base_price
         self.config_style = config_style
+        self.custom_js = custom_js
+        self.custom_css = custom_css
         self.form = form
         self.group_layer_image = group_layer_image  # dict: image_id, src, width, height
         self.sections_data = sections_data  # list of sections
@@ -100,13 +102,20 @@ class ConfiguratorJSONGenerator:
         config_data = {
             "title": self.title,
             "type": "amz_configurator",
-            "settings": {
+            "settings": {   
                 "_wpc_data_version": "3.4",
                 "_wpc_config_style": self.config_style,
-                "_wpc_form": "cart-form",
+                "_wpml_word_count": "3",
+                "_wpc_views": {
+                    "front": "Front"
+                    },
+                "_wpc_form": self.form,
                 "_wpc_base_price": self.base_price,
                 "_wpc_components": components,
-                "_wpc_editor_images": self.editor_images
+                "_wpc_editor_images": self.editor_images,
+                "_wpc_custom_js": self.custom_js,
+                "_wpc_custom_css": self.custom_css,
+
             }
         }
         return config_data

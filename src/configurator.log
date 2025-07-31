@@ -100,3 +100,43 @@
 2025-07-31 20:21:48,568 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-07-31 20:21:48,568 - INFO - Sections data: 1
 2025-07-31 20:21:48,614 - INFO - Form submitted: {'Configurator Name': 'test', 'Style': 'Accordion Style 2', 'Custom CSS': 't', 'Custom JS': 't', 'Form': 'Cart Form', 'Base Price': '3', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'eww', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '8', 'Height': '8', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025'}]}
+2025-07-31 23:36:38,518 - INFO - Application initialized successfully.
+2025-07-31 23:37:06,565 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-07-31 23:37:06,569 - INFO - Added image input set #1
+2025-08-01 00:03:38,211 - INFO - Application initialized successfully.
+2025-08-01 00:04:52,086 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 00:04:52,090 - INFO - Added image input set #1
+2025-08-01 00:07:19,549 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 00:07:19,551 - INFO - Sections data: 1
+2025-08-01 00:07:19,652 - INFO - Form submitted: {'Configurator Name': '4', 'Style': 'Accordion Style 2', 'Custom CSS': '', 'Custom JS': '<script>\njQuery(document.ready(function($)) {\n  $(".wpc-configurator-wrap").addClass("customAccordion");\n});\n</script>\n', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/Image-prototype-scaled-1-1.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1990', 'Height': '1771', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/4-Background', 'Motif': '4', 'Motif No': 'Background', 'Date': '2025/07'}]}
+2025-08-01 00:44:10,117 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 00:44:10,124 - INFO - Added image input set #2
+2025-08-01 00:45:25,691 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 00:45:25,693 - INFO - Sections data: 2
+2025-08-01 00:45:25,830 - INFO - Form submitted: {'Configurator Name': '5', 'Style': 'Accordion Style 2', 'Custom CSS': '', 'Custom JS': '<script>\njQuery(document.ready(function($)) {\n  $(".wpc-configurator-wrap").addClass("customAccordion");\n});\n</script>\n', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/Image-prototype-scaled-1-1.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1990', 'Height': '1771', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/5-Motif-1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025/07'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '1990', 'Height': '1771', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025/07'}]}
+2025-08-01 01:27:35,633 - INFO - Application initialized successfully.
+2025-08-01 01:28:18,784 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 01:28:18,792 - INFO - Added image input set #1
+2025-08-01 01:28:44,650 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 01:28:44,654 - INFO - Added image input set #2
+2025-08-01 01:28:59,073 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 01:28:59,074 - INFO - Sections data: 2
+2025-08-01 01:28:59,163 - INFO - Form submitted: {'Configurator Name': '5', 'Style': 'Accordion Style 2', 'Custom CSS': '', 'Custom JS': '<script>\njQuery(document.ready(function($)) {\n  $(".wpc-configurator-wrap").addClass("customAccordion");\n});\n</script>\n', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/Image-prototype-scaled-1-1.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1990', 'Height': '1771', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/5-Motif-1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025/07'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '1990', 'Height': '1771', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/07/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025/07'}]}
+2025-08-01 03:14:40,490 - INFO - Application initialized successfully.
+2025-08-01 03:14:54,895 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 03:14:54,899 - INFO - Added image input set #1
+2025-08-01 03:15:05,546 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 03:15:05,551 - ERROR - Error submitting form: ConfiguratorApp.update_last_record() got multiple values for argument 'json_file'
+2025-08-01 03:15:13,978 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 03:15:13,980 - ERROR - Error submitting form: ConfiguratorApp.update_last_record() got multiple values for argument 'json_file'
+2025-08-01 03:15:34,367 - INFO - Application initialized successfully.
+2025-08-01 03:15:44,862 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 03:15:44,864 - INFO - Added image input set #1
+2025-08-01 03:15:55,075 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 03:15:55,078 - INFO - Sections data: 1
+2025-08-01 03:15:55,140 - INFO - Form submitted: {'Configurator Name': 'test', 'Style': 'Accordion Style 2', 'Custom CSS': 'css', 'Custom JS': 'js', 'Form': 'cart-form', 'Base Price': '23', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'ht', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '300', 'Height': '300', 'Product URL': 'https-floor-and-design.fr/wp-content/uploads/2025/07/5-Background', 'Motif': '5', 'Motif No': 'Background', 'Date': '2025/07'}]}
+2025-08-01 03:23:36,406 - INFO - Application initialized successfully.
+2025-08-01 03:23:49,347 - INFO - Application initialized successfully.
+2025-08-01 03:24:00,947 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 03:24:00,953 - INFO - Added image input set #1
+2025-08-01 03:24:13,643 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
