@@ -30,5 +30,9 @@ Option to import product - NA
     Image URL: 
     
 
-3. Upload Images in WP - Renamed in layer generation
+3. Upload Images in WP - Renamed in layer generation - DONE
+https://floor-and-design.fr/wp-content/uploads/2025/07/5-Motif-1-Blanc-Tiona-1g.png
+https://floor-and-design.fr/wp-content/uploads/2025/07/5-Background-Bleu-Canard-7g.png
+
+
 3. Generate JSON

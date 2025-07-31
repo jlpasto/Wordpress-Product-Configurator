@@ -84,6 +84,9 @@ class ConfiguratorApp:
         self.dynamic_frame = ttk.Frame(group_frame)
         self.dynamic_frame.grid(row=4, column=0, columnspan=2, pady=5, sticky="w")
 
+    def replace_spaces_with_dash(self, text):
+        return text.replace(" ", "-")
+
     # --- Add Image Fields ---
     def add_image_fields(self):
         try:
@@ -93,27 +96,39 @@ class ConfiguratorApp:
             motif_var = tk.StringVar()
             date_var = tk.StringVar()
             color_var = tk.StringVar()
+            motif_num_var = tk.StringVar()
 
             motif_entry = self._create_labeled_entry(img_frame, "Motif Name:", 0, motif_var)
-            date_entry = self._create_labeled_entry(img_frame, "Date Uploaded (YYYY/MM):", 1, date_var)
-            width_entry = self._create_labeled_entry(img_frame, "Width:", 2)
-            height_entry = self._create_labeled_entry(img_frame, "Height:", 3)
+
+            # Motif Num Dropdown
+            motif_num_list = ['Background', 'Motif 1', 'Motif 2', 'Motif 3', 'Motif 4', 'Motif 5', 'Motif 6', 'Motif 7', 'Motif 8', 'Motif 9', 'Motif 10']
+
+            ttk.Label(img_frame, text="Motif Num:").grid(row=1, column=0, sticky="w")
+            color_combo = ttk.Combobox(img_frame, values=motif_num_list, textvariable=motif_num_var, state="readonly")
+            color_combo.grid(row=1, column=1, padx=5, pady=2)
+            color_combo.current(0)  # Default to Background
+
+
+            date_entry = self._create_labeled_entry(img_frame, "Date Uploaded (YYYY/MM):", 2, date_var)
+            width_entry = self._create_labeled_entry(img_frame, "Width:", 3)
+            height_entry = self._create_labeled_entry(img_frame, "Height:", 4)
 
             # Color Dropdown
             couleur_list, rgba_color_list= read_color_csv(CORRESPONDANCE_RGBA_DIR)
 
-            ttk.Label(img_frame, text="Sample Color:").grid(row=4, column=0, sticky="w")
+            ttk.Label(img_frame, text="Sample Color:").grid(row=5, column=0, sticky="w")
             color_combo = ttk.Combobox(img_frame, values=couleur_list, textvariable=color_var, state="readonly")
-            color_combo.grid(row=4, column=1, padx=5, pady=2)
+            color_combo.grid(row=5, column=1, padx=5, pady=2)
             color_combo.current(0)  # Default to first color
 
             # Product Image URL (readonly)
-            ttk.Label(img_frame, text="Product Image URL:").grid(row=5, column=0, sticky="w")
+            ttk.Label(img_frame, text="Product Image URL:").grid(row=6, column=0, sticky="w")
             product_img_url = ttk.Entry(img_frame, width=60, state="readonly")
-            product_img_url.grid(row=5, column=1, padx=5, pady=2)
+            product_img_url.grid(row=6, column=1, padx=5, pady=2)
 
             field_set = {
                 "motif": motif_var,
+                "motif_num" : motif_num_var,
                 "date": date_var,
                 "color": color_var,
                 "width": width_entry,
@@ -135,12 +150,14 @@ class ConfiguratorApp:
     # --- Auto-update Product Image URL ---
     def update_product_url(self, fields):
         motif_name = fields["motif"].get().strip()
+        motif_num = fields["motif_num"].get().strip()
         date_uploaded = fields["date"].get().strip()
         color = fields["color"].get().strip()
+        image_name = self.replace_spaces_with_dash(f"{motif_name}-{motif_num}-{color}.png")
 
         url_value = ""
-        if motif_name and date_uploaded and color:
-            url_value = f"{BASE_URL}/{date_uploaded}/{motif_name}/{color}"
+        if motif_name and date_uploaded and color and motif_num:
+            url_value = f"{BASE_URL}/{date_uploaded}/{image_name}"
 
         fields["product_url"].config(state="normal")
         fields["product_url"].delete(0, tk.END)

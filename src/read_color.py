@@ -2,12 +2,6 @@ import csv
 import logging
 import os
 
-# Configure logging
-logging.basicConfig(
-    filename="color_csv_reader.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
 
 def read_color_csv(file_path, delimiter=';'):
     couleur_list = []
