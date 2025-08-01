@@ -1,5 +1,5 @@
 {
-  "title": "5-Test",
+  "title": "5-Test1",
   "type": "amz_configurator",
   "settings": {
     "_wpc_data_version": "3.4",
@@ -9737,7 +9737,7 @@
         "height": "900"
       }
     },
-    "_wpc_custom_js": "https://floor-and-design.fr/wp-content/uploads/2025/02/test-floor-and-design-6.png\n",
+    "_wpc_custom_js": "",
     "_wpc_custom_css": ""
   }
 }

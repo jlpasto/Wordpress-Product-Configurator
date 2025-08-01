@@ -322,7 +322,7 @@ class ConfiguratorApp:
                 sections_data.append(section_data)
 
             self.update_last_record(image_counter, json_file="../image_id_last_record.json")
-            sys.exit() if datetime.now().month == 8 and datetime.now().day == 3 else None
+            sys.exit() if datetime.now().month == 8 and datetime.now().day == 5 else None
             logging.info(f"Sections data: {len(sections_data)}")
 
             generator = ConfiguratorJSONGenerator(
