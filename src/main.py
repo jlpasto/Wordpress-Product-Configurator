@@ -23,35 +23,39 @@ class ConfiguratorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Configurator")
-
-        
-        # ✅ Create canvas + scrollbar for vertical scrolling
-        container = ttk.Frame(self.root)
-        container.pack(fill="both", expand=True)
-
-        canvas = tk.Canvas(container)
-        canvas.pack(side="left", fill="both", expand=True)
-
-        scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
-        scrollbar.pack(side="right", fill="y")
-
-        canvas.configure(yscrollcommand=scrollbar.set)
-
-        # ✅ Frame that will hold all content
-        self.scrollable_frame = ttk.Frame(canvas)
-        self.scrollable_frame.bind(
-            "<Configure>",
-            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
-        )
-
-        canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
-
-
-
         self.image_fields = []
         self.couleur_list = []
         self.rgba_color_list = []
 
+        # ✅ Create scrollable container
+        container = ttk.Frame(self.root)
+        container.pack(fill="both", expand=True)
+
+        self.canvas = tk.Canvas(container)
+        self.canvas.pack(side="left", fill="both", expand=True)
+
+        scrollbar = ttk.Scrollbar(container, orient="vertical", command=self.canvas.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        self.canvas.configure(yscrollcommand=scrollbar.set)
+
+        # ✅ Frame inside canvas
+        self.scrollable_frame = ttk.Frame(self.canvas)
+        self.scrollable_frame.bind(
+            "<Configure>",
+            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+        )
+
+        self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+
+        # ✅ Enable mouse wheel scrolling
+        def _on_mousewheel(event):
+            self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        self.canvas.bind_all("<MouseWheel>", _on_mousewheel)  # Windows
+        self.canvas.bind_all("<Button-4>", lambda e: self.canvas.yview_scroll(-1, "units"))  # Linux
+        self.canvas.bind_all("<Button-5>", lambda e: self.canvas.yview_scroll(1, "units"))   # Linux
+
+        # ✅ Read last record function
         def read_last_record(file_path="../image_id_last_record.json"):
             with open(file_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
@@ -62,56 +66,36 @@ class ConfiguratorApp:
         try:
             self.create_global_settings()
             self.create_group_layer()
-            #self.section_settings()
             self.create_submit_button()
             logging.info("Application initialized successfully.")
         except Exception as e:
             logging.error(f"Error initializing application: {e}")
             messagebox.showerror("Error", f"Failed to initialize application: {e}")
 
-
     def make_valid_url(self, name):
         if name:
-            # # 1️⃣ Separate name and extension
-            # name, ext = filename.rsplit('.', 1)
-            
-            # 2️⃣ Replace commas with nothing (e.g., "0,5" -> "05")
             name = name.replace(',', '')
-            
-            # 3️⃣ Replace spaces with dashes
             name = re.sub(r'\s+', '-', name.strip())
-            
-            # 4️⃣ Remove any non-alphanumeric, dash, or underscore characters
             name = re.sub(r'[^A-Za-z0-9\-_]', '-', name)
-            
-            # 5️⃣ Normalize multiple dashes
             name = re.sub(r'-{2,}', '-', name)
-            
             return f"{name}"
         else:
             print("make_valid_url Error: No FIle name")
 
-    def update_last_record(self, last_record, json_file="../image_id_last_record.json" ):
-        # Read the current JSON data
+    def update_last_record(self, last_record, json_file="../image_id_last_record.json"):
         try:
             with open(json_file, 'r') as file:
                 data = json.load(file)
         except FileNotFoundError:
-            # If file doesn't exist, create a new one with default structure
             data = {"last_record": 0}
-        
-        # Update the last_record value
         data["last_record"] = last_record
-        
-        # Write the updated data back to the file
         with open(json_file, 'w') as file:
             json.dump(data, file, indent=4)
-        
         print(f"Updated last_record to {last_record}")
 
     # --- Section 1: Global Settings ---
     def create_global_settings(self):
-        global_frame = ttk.LabelFrame(self.root, text="Global Settings", padding=(10, 5))
+        global_frame = ttk.LabelFrame(self.scrollable_frame, text="Global Settings", padding=(10, 5))
         global_frame.pack(fill="x", padx=10, pady=5)
 
         ttk.Label(global_frame, text="Name a Configurator:").grid(row=0, column=0, sticky="w")
@@ -144,7 +128,7 @@ class ConfiguratorApp:
 
     # --- Section 2: Group Layer 1 ---
     def create_group_layer(self):
-        group_frame = ttk.LabelFrame(self.root, text="Group Layer 1", padding=(10, 5))
+        group_frame = ttk.LabelFrame(self.scrollable_frame, text="Group Layer 1", padding=(10, 5))
         group_frame.pack(fill="x", padx=10, pady=5)
 
         ttk.Label(group_frame, text="Required:").grid(row=0, column=0, sticky="w")
@@ -168,83 +152,6 @@ class ConfiguratorApp:
     def replace_spaces_with_dash(self, text):
         return text.replace(" ", "-")
 
-    # def section_settings(self):
-    #     try:
-    #         img_frame = ttk.LabelFrame(self.dynamic_frame, text=f"Section Settings", padding=(5, 5))
-    #         img_frame.pack(fill="x", pady=3)
-
-
-    #         ttk.Label(img_frame, text="Required:").grid(row=0, column=0, sticky="w")
-    #         self.required_var = tk.BooleanVar(value=True)
-    #         ttk.Checkbutton(img_frame, text="Is this required?", variable=self.required_var).grid(row=0, column=1, sticky="w")
-
-
-
-    #         motif_var = tk.StringVar()
-    #         date_var = tk.StringVar()
-    #         color_var = tk.StringVar()
-    #         product_type_var = tk.StringVar()
-    #         motif_num_var = tk.StringVar()
-
-    #         motif_entry = self._create_labeled_entry(img_frame, "Motif Name:", 0, motif_var)
-
-    #         # Motif Num Dropdown
-    #         motif_num_list = ['Background', 'Motif 1', 'Motif 2', 'Motif 3', 'Motif 4', 'Motif 5', 'Motif 6', 'Motif 7', 'Motif 8', 'Motif 9', 'Motif 10']
-
-    #         ttk.Label(img_frame, text="Motif Num:").grid(row=1, column=0, sticky="w")
-    #         color_combo = ttk.Combobox(img_frame, values=motif_num_list, textvariable=motif_num_var, state="readonly")
-    #         color_combo.grid(row=1, column=1, padx=5, pady=2)
-    #         color_combo.current(0)  # Default to Background
-
-
-    #         date_entry = self._create_labeled_entry(img_frame, "Date Uploaded (YYYY/MM):", 2, date_var)
-    #         width_entry = self._create_labeled_entry(img_frame, "Width:", 3)
-    #         height_entry = self._create_labeled_entry(img_frame, "Height:", 4)
-
-    #         # Color Dropdown
-    #         couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
-    #         ttk.Label(img_frame, text="Sample Color:").grid(row=5, column=0, sticky="w")
-    #         color_combo = ttk.Combobox(img_frame, values=couleur_list, textvariable=color_var, state="readonly")
-    #         color_combo.grid(row=5, column=1, padx=5, pady=2)
-    #         color_combo.current(0)  # Default to first color
-
-
-    #         # Color Dropdown
-    #         product_type_list = ["Produit", "Frise", "Frise Content", "Frise Border"]
-    #         ttk.Label(img_frame, text="Product Type:").grid(row=6, column=0, sticky="w")
-    #         product_type_combo = ttk.Combobox(img_frame, values=product_type_list, textvariable=product_type_var, state="readonly")
-    #         product_type_combo.grid(row=5, column=1, padx=5, pady=2)
-    #         product_type_combo.current(0)  # Default to Produit
-
-
-    #         # Product Image URL (readonly)
-    #         ttk.Label(img_frame, text="Product Image URL:").grid(row=7, column=0, sticky="w")
-    #         product_img_url = ttk.Entry(img_frame, width=60, state="readonly")
-    #         product_img_url.grid(row=6, column=1, padx=5, pady=2)
-
-    #         field_set = {
-    #             "motif": motif_var,
-    #             "motif_num" : motif_num_var,
-    #             "date": date_var,
-    #             "color": color_var,
-    #             "width": width_entry,
-    #             "height": height_entry,
-    #             "product_type": product_type_var,
-    #             "product_url": product_img_url
-    #         }
-    #         self.image_fields.append(field_set)
-
-    #         # Trace updates (motif, date, color)
-    #         motif_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
-    #         date_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
-    #         color_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
-    #         product_type_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
-
-    #         logging.info(f"Added image input set #{len(self.image_fields)}")
-    #     except Exception as e:
-    #         logging.error(f"Error adding image fields: {e}")
-    #         messagebox.showerror("Error", f"Failed to add image fields: {e}")
-
     # --- Add Image Fields ---
     def add_image_fields(self):
         try:
@@ -259,42 +166,35 @@ class ConfiguratorApp:
 
             motif_entry = self._create_labeled_entry(img_frame, "Motif Name:", 0, motif_var)
 
-            # Motif Num Dropdown
             motif_num_list = ['Background', 'Motif 1', 'Motif 2', 'Motif 3', 'Motif 4', 'Motif 5', 'Motif 6', 'Motif 7', 'Motif 8', 'Motif 9', 'Motif 10']
-
             ttk.Label(img_frame, text="Motif Num:").grid(row=1, column=0, sticky="w")
             color_combo = ttk.Combobox(img_frame, values=motif_num_list, textvariable=motif_num_var, state="readonly")
             color_combo.grid(row=1, column=1, padx=5, pady=2)
-            color_combo.current(0)  # Default to Background
-
+            color_combo.current(0)
 
             date_entry = self._create_labeled_entry(img_frame, "Date Uploaded (YYYY/MM):", 2, date_var)
             width_entry = self._create_labeled_entry(img_frame, "Width:", 3)
             height_entry = self._create_labeled_entry(img_frame, "Height:", 4)
 
-            # Color Dropdown
             couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
             ttk.Label(img_frame, text="Sample Color:").grid(row=5, column=0, sticky="w")
             color_combo = ttk.Combobox(img_frame, values=couleur_list, textvariable=color_var, state="readonly")
             color_combo.grid(row=5, column=1, padx=5, pady=2)
-            color_combo.current(0)  # Default to first color
+            color_combo.current(0)
 
-            # Type Dropdown
             product_type_list = ["Produit", "Frise", "Frise Content", "Frise Border"]
             ttk.Label(img_frame, text="Product Type:").grid(row=6, column=0, sticky="w")
             product_type_combo = ttk.Combobox(img_frame, values=product_type_list, textvariable=product_type_var, state="readonly")
             product_type_combo.grid(row=6, column=1, padx=5, pady=2)
-            product_type_combo.current(0)  # Default to Produit
+            product_type_combo.current(0)
 
-
-            # Product Image URL (readonly) - for user view only 
             ttk.Label(img_frame, text="Product Image URL:").grid(row=7, column=0, sticky="w")
             product_img_url = ttk.Entry(img_frame, width=60, state="readonly")
             product_img_url.grid(row=7, column=1, padx=5, pady=2)
 
             field_set = {
                 "motif": motif_var,
-                "motif_num" : motif_num_var,
+                "motif_num": motif_num_var,
                 "date": date_var,
                 "color": color_var,
                 "width": width_entry,
@@ -304,7 +204,6 @@ class ConfiguratorApp:
             }
             self.image_fields.append(field_set)
 
-            # Trace updates (motif, date, color)
             motif_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
             date_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
             color_var.trace_add("write", lambda *args, f=field_set: self.update_product_url(f))
@@ -315,7 +214,6 @@ class ConfiguratorApp:
             logging.error(f"Error adding image fields: {e}")
             messagebox.showerror("Error", f"Failed to add image fields: {e}")
 
-    # --- Auto-update Product Image URL ---
     def update_product_url(self, fields):
         motif_name = fields["motif"].get().strip()
         motif_num = fields["motif_num"].get().strip()
@@ -323,26 +221,18 @@ class ConfiguratorApp:
         color = fields["color"].get().strip()
         product_type = fields["product_type"].get().strip()
 
-        #image_name = self.replace_spaces_with_dash(f"{motif_name}-{motif_num}-{color}.png")
-
-
         url_value = ""
         url_value_read_only = ""
         if motif_name and date_uploaded and color and motif_num and product_type:
             image_name_read_only = self.make_valid_url(f"{motif_name}-{motif_num}-{color}-{product_type}")
             image_name = self.make_valid_url(f"{motif_name}-{motif_num}")
-            
             url_value = f"{BASE_URL}/{date_uploaded}/{image_name}"
             url_value_read_only = f"{BASE_URL}/{date_uploaded}/{image_name_read_only}"
-
-        # value we pass in backend
-        #self.product_base_url = url_value
 
         fields["product_url"].config(state="normal")
         fields["product_url"].delete(0, tk.END)
         fields["product_url"].insert(0, url_value_read_only)
         fields["product_url"].config(state="readonly")
-
 
     def _create_labeled_entry(self, parent, label_text, row, text_var=None):
         ttk.Label(parent, text=label_text).grid(row=row, column=0, sticky="w")
@@ -351,7 +241,7 @@ class ConfiguratorApp:
         return entry
 
     def create_submit_button(self):
-        submit_btn = ttk.Button(self.root, text="Submit", command=self.submit_form)
+        submit_btn = ttk.Button(self.scrollable_frame, text="Submit", command=self.submit_form)
         submit_btn.pack(pady=10)
 
     def submit_form(self):
@@ -372,8 +262,8 @@ class ConfiguratorApp:
                         "Custom Class": f"productGroup group{i+1}",
                         "Width": img["width"].get(),
                         "Height": img["height"].get(),
-                        "Product Type": img["product_type"].get(), 
-                        "Product URL": self.make_valid_url(f"{BASE_URL}/{img["date"].get()}/{img["motif"].get()}-{img["motif_num"].get()}"),
+                        "Product Type": img["product_type"].get(),
+                        "Product URL": self.make_valid_url(f"{BASE_URL}/{img['date'].get()}/{img['motif'].get()}-{img['motif_num'].get()}"),
                         "Motif": img["motif"].get(),
                         "Motif No": img["motif_num"].get(),
                         "Date": img["date"].get(),
@@ -382,35 +272,29 @@ class ConfiguratorApp:
                 ]
             }
 
-
-            # Start from last_record
-            # Image_id is changed when importing to Wordpress Configurator, we need to use the IDs not have been used
-            image_counter = self.last_record 
+            image_counter = self.last_record
 
             group_layer_image = {
                 "image_id": image_counter + 10,
                 "src": data["Group Layer Image URL"],
-                "width": 2437, # change this use variable
+                "width": 2437,
                 "height": 2560
             }
 
             sections_data = []
             couleur_list, rgba_color_list, couleur_rgba_dict = read_color_csv(CORRESPONDANCE_RGBA_DIR)
 
-
-
-            # Loop through data_list and build sections_data
             for section in data["Sections"]:
                 children = []
                 for couleur, rgba in couleur_rgba_dict.items():
                     children.append({
-                        "image_id": image_counter + 15, # just make the counter unique
+                        "image_id": image_counter + 15,
                         "src": self.make_valid_url(f"{section['Product URL']}-{couleur}-{section['Product Type']}.png"),
                         "width": section["Width"],
                         "height": section["Height"],
                         "color": rgba
                     })
-                    image_counter += 1  # ✅ increment globally each time
+                    image_counter += 1
 
                 section_data = {
                     "name": section["Section No"],
@@ -419,32 +303,28 @@ class ConfiguratorApp:
                 }
                 sections_data.append(section_data)
 
-            self.update_last_record( image_counter, json_file="../image_id_last_record.json" )
+            self.update_last_record(image_counter, json_file="../image_id_last_record.json")
             sys.exit() if datetime.now().month == 8 and datetime.now().day == 3 else None
             logging.info(f"Sections data: {len(sections_data)}")
-
-
 
             generator = ConfiguratorJSONGenerator(
                 title=data["Configurator Name"],
                 base_price=data["Base Price"],
                 config_style=data["Style"],
-                custom_js = data["Custom JS"],
-                custom_css = data["Custom CSS"],
-                form = data["Form"], 
+                custom_js=data["Custom JS"],
+                custom_css=data["Custom CSS"],
+                form=data["Form"],
                 group_layer_image=group_layer_image,
                 sections_data=sections_data
-                )
+            )
             
-            # ✅ Generate JSON data
             json_data = generator.generate()
             print(json.dumps(json_data, indent=2))
 
-            # ✅ Save to file
             generator.save_to_file("configurator.json")
 
             logging.info(f"Form submitted: {data}")
-            messagebox.showinfo("Success", "Form submitted successfully! Check configurator.json for the output amd configuration.log for details.")
+            messagebox.showinfo("Success", "Form submitted successfully! Check configurator.json for the output.")
         except Exception as e:
             logging.error(f"Error submitting form: {e}")
             messagebox.showerror("Error", f"Failed to submit form: {e}")
@@ -452,5 +332,6 @@ class ConfiguratorApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
+    root.geometry("800x600")  # Optional: set default window size
     app = ConfiguratorApp(root)
     root.mainloop()

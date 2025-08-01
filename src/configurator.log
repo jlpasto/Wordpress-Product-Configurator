@@ -193,3 +193,12 @@
 2025-08-01 16:56:24,206 - INFO - Application initialized successfully.
 2025-08-01 16:56:31,275 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-08-01 16:56:31,280 - INFO - Added image input set #1
+2025-08-01 17:00:23,778 - INFO - Application initialized successfully.
+2025-08-01 17:00:26,643 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 17:00:26,647 - INFO - Added image input set #1
+2025-08-01 17:00:28,545 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 17:00:28,548 - INFO - Added image input set #2
+2025-08-01 17:00:29,289 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 17:00:29,293 - INFO - Added image input set #3
+2025-08-01 17:01:04,003 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 17:01:04,007 - INFO - Added image input set #4
