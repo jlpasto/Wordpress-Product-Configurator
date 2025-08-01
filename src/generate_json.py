@@ -105,7 +105,6 @@ class ConfiguratorJSONGenerator:
             "settings": {   
                 "_wpc_data_version": "3.4",
                 "_wpc_config_style": self.config_style,
-                "_wpml_word_count": "3",
                 "_wpc_views": {
                     "front": "Front"
                     },
@@ -114,8 +113,7 @@ class ConfiguratorJSONGenerator:
                 "_wpc_components": components,
                 "_wpc_editor_images": self.editor_images,
                 "_wpc_custom_js": self.custom_js,
-                "_wpc_custom_css": self.custom_css,
-
+                "_wpc_custom_css": self.custom_css
             }
         }
         return config_data
