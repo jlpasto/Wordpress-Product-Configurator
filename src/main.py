@@ -102,11 +102,29 @@ class ConfiguratorApp:
         self.config_name = ttk.Entry(global_frame, width=40)
         self.config_name.grid(row=0, column=1, padx=5, pady=2)
 
+        style_map = {
+            "Style 1": "style-1",
+            "Style 2": "style-2",
+            "Style 3": "style-3",
+            "Accordion Style 1": "accordion-1",
+            "Accordion Style 2": "accordion-2",
+            "Popover": "popover_value"
+        }
+        
         ttk.Label(global_frame, text="Choose Style:").grid(row=1, column=0, sticky="w")
         self.style_var = tk.StringVar(value="Accordion Style 2")
-        styles = ["Style 1", "Style 2", "Style 3", "Accordion Style 1", "Accordion Style 2", "Popover"]
-        self.style_combo = ttk.Combobox(global_frame, values=styles, textvariable=self.style_var, state="readonly")
+
+        self.style_combo = ttk.Combobox(
+            global_frame,
+            values=list(style_map.keys()),
+            textvariable=self.style_var,
+            state="readonly"
+        )
         self.style_combo.grid(row=1, column=1, padx=5, pady=2)
+
+        # ✅ Get actual value without overwriting style_var
+        style_var_display_value = self.style_var.get()
+        self.style_actual_value = style_map.get(style_var_display_value)
 
         ttk.Label(global_frame, text="Custom CSS:").grid(row=2, column=0, sticky="w")
         self.custom_css = ttk.Entry(global_frame, width=40)
@@ -248,7 +266,7 @@ class ConfiguratorApp:
         try:
             data = {
                 "Configurator Name": self.config_name.get(),
-                "Style": self.style_var.get(),
+                "Style": self.style_actual_value,
                 "Custom CSS": self.custom_css.get(),
                 "Custom JS": self.custom_js.get(),
                 "Form": self.form_var.get().replace(" ", "-").lower(),
@@ -263,7 +281,7 @@ class ConfiguratorApp:
                         "Width": img["width"].get(),
                         "Height": img["height"].get(),
                         "Product Type": img["product_type"].get(),
-                        "Product URL": self.make_valid_url(f"{BASE_URL}/{img['date'].get()}/{img['motif'].get()}-{img['motif_num'].get()}"),
+                        "Product URL": f"{BASE_URL}/{img['date'].get()}/" + self.make_valid_url(f"{img['motif'].get()}-{img['motif_num'].get()}"),
                         "Motif": img["motif"].get(),
                         "Motif No": img["motif_num"].get(),
                         "Date": img["date"].get(),
@@ -289,7 +307,7 @@ class ConfiguratorApp:
                 for couleur, rgba in couleur_rgba_dict.items():
                     children.append({
                         "image_id": image_counter + 15,
-                        "src": self.make_valid_url(f"{section['Product URL']}-{couleur}-{section['Product Type']}.png"),
+                        "src": f"{section['Product URL']}" + self.make_valid_url(f"-{couleur}-{section['Product Type']}") + ".png",
                         "width": section["Width"],
                         "height": section["Height"],
                         "color": rgba
