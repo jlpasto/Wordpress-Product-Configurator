@@ -140,3 +140,56 @@
 2025-08-01 03:24:00,947 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-08-01 03:24:00,953 - INFO - Added image input set #1
 2025-08-01 03:24:13,643 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:42:59,265 - INFO - Application initialized successfully.
+2025-08-01 15:43:48,244 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:43:48,249 - INFO - Added image input set #1
+2025-08-01 15:50:34,670 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:50:34,672 - INFO - Added image input set #1
+2025-08-01 15:50:34,673 - INFO - Application initialized successfully.
+2025-08-01 15:50:41,803 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:50:41,806 - INFO - Added image input set #2
+2025-08-01 15:50:57,010 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:50:57,013 - INFO - Added image input set #3
+2025-08-01 15:51:12,079 - INFO - Application initialized successfully.
+2025-08-01 15:51:14,259 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:51:14,262 - INFO - Added image input set #1
+2025-08-01 15:51:15,626 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:51:15,659 - INFO - Added image input set #2
+2025-08-01 15:51:42,035 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 15:51:42,040 - INFO - Added image input set #1
+2025-08-01 15:51:42,041 - INFO - Application initialized successfully.
+2025-08-01 16:00:55,547 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:00:55,549 - INFO - Added image input set #1
+2025-08-01 16:00:55,549 - INFO - Application initialized successfully.
+2025-08-01 16:01:23,567 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:01:23,577 - INFO - Added image input set #1
+2025-08-01 16:01:23,580 - INFO - Application initialized successfully.
+2025-08-01 16:02:56,199 - INFO - Application initialized successfully.
+2025-08-01 16:02:58,083 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:02:58,086 - INFO - Added image input set #1
+2025-08-01 16:35:33,804 - INFO - Application initialized successfully.
+2025-08-01 16:38:07,628 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:38:07,633 - ERROR - Error adding image fields: 'ConfiguratorApp' object has no attribute 'product_base_url'
+2025-08-01 16:38:39,104 - INFO - Application initialized successfully.
+2025-08-01 16:38:53,838 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:38:53,848 - INFO - Added image input set #1
+2025-08-01 16:44:12,436 - INFO - Application initialized successfully.
+2025-08-01 16:44:13,645 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:44:13,649 - INFO - Added image input set #1
+2025-08-01 16:45:59,229 - INFO - Application initialized successfully.
+2025-08-01 16:46:00,612 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:46:00,616 - INFO - Added image input set #1
+2025-08-01 16:49:24,125 - INFO - Application initialized successfully.
+2025-08-01 16:49:27,150 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:49:27,155 - INFO - Added image input set #1
+2025-08-01 16:50:12,398 - INFO - Application initialized successfully.
+2025-08-01 16:50:13,772 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:50:13,777 - INFO - Added image input set #1
+2025-08-01 16:53:28,216 - INFO - Application initialized successfully.
+2025-08-01 16:53:29,890 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:53:29,894 - INFO - Added image input set #1
+2025-08-01 16:55:22,488 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:55:22,490 - INFO - Added image input set #2
+2025-08-01 16:56:24,206 - INFO - Application initialized successfully.
+2025-08-01 16:56:31,275 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-01 16:56:31,280 - INFO - Added image input set #1

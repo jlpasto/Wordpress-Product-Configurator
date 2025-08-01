@@ -1,38 +1,6 @@
-Option to import product - NA 
-
-1. Convert Hexa colors to RGBA - DONE
-2. User - input 
-     Section 1: Global Settings
-     InputBox: Name a configurator
-     ComboBox: Choose style
-      options: Style 1, Style 2, Style 3, Accordion Style 1, Accordion Style 2, Popover (Default is Accordion Style 2)
-    InputBox: Custom CSS
-    InputBox: Custom JS
-    ComboBox: Choose Form  
-     options: Get a Quote Form, Cart Form , Contact Form (Default is Cart Form)
-    InputBox: Base Price
-
-     Section 2: Group Layer 1
-
-     Label: Required
-     Checkbox: Is this required? (Default is true)
-
-     Label: Hide Control
-     Checkbox: Hide this and child layers in control (Default is true)
-    
-     InputBox: Image Layer FULL URL from Wordpress: 
-
-     Button: Add Image Button
-    (Everytime When button is clicked show this form input)
-
-    Width:
-    Height:
-    Image URL: 
-    
-
-3. Upload Images in WP - Renamed in layer generation - DONE
-https://floor-and-design.fr/wp-content/uploads/2025/07/5-Motif-1-Blanc-Tiona-1g.png
-https://floor-and-design.fr/wp-content/uploads/2025/07/5-Background-Bleu-Canard-7g.png
-
-
-3. Generate JSON
+group_layer_image = {
+    "image_id": image_counter + 10,
+    "src": data["Group Layer Image URL"],
+    "width": 2437, # change this use variable
+    "height": 2560
+}
