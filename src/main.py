@@ -132,7 +132,7 @@ class ConfiguratorApp:
 
         # Create a StringVar with a default value
         self.custom_js_var = tk.StringVar()
-        self.custom_js_var.set("<script>\njQuery(document.ready(function($)) {\n$(\".wpc-configurator-wrap\").addClass(\"customAccordion\");\n});\n</script>\n")  # <-- your default value
+        #self.custom_js_var.set("<script>\njQuery(document.ready(function($)) {\n$(\".wpc-configurator-wrap\").addClass(\"customAccordion\");\n});\n</script>\n")  # <-- your default value
 
         # Label
         ttk.Label(global_frame, text="Custom JS:").grid(row=3, column=0, sticky="w")
