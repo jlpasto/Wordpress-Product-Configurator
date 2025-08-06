@@ -130,8 +130,15 @@ class ConfiguratorApp:
         self.custom_css = ttk.Entry(global_frame, width=40)
         self.custom_css.grid(row=2, column=1, padx=5, pady=2)
 
+        # Create a StringVar with a default value
+        self.custom_js_var = tk.StringVar()
+        self.custom_js_var.set("<script>\njQuery(document.ready(function($)) {\n$(\".wpc-configurator-wrap\").addClass(\"customAccordion\");\n});\n</script>\n")  # <-- your default value
+
+        # Label
         ttk.Label(global_frame, text="Custom JS:").grid(row=3, column=0, sticky="w")
-        self.custom_js = ttk.Entry(global_frame, width=40)
+
+        # Entry with default value
+        self.custom_js = ttk.Entry(global_frame, width=40, textvariable=self.custom_js_var)
         self.custom_js.grid(row=3, column=1, padx=5, pady=2)
 
         ttk.Label(global_frame, text="Choose Form:").grid(row=4, column=0, sticky="w")
@@ -268,7 +275,7 @@ class ConfiguratorApp:
                 "Configurator Name": self.config_name.get(),
                 "Style": self.style_actual_value,
                 "Custom CSS": self.custom_css.get(),
-                "Custom JS": self.custom_js.get(),
+                "Custom JS": self.custom_js_var.get(),
                 "Form": self.form_var.get().replace(" ", "-").lower(),
                 "Base Price": self.base_price.get(),
                 "Required": self.required_var.get(),

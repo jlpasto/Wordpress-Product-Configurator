@@ -263,3 +263,9 @@
 2025-08-01 23:50:54,405 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-08-01 23:50:54,418 - INFO - Sections data: 2
 2025-08-01 23:50:54,566 - INFO - Form submitted: {'Configurator Name': '5 JL Test', 'Style': 'accordion-2', 'Custom CSS': '', 'Custom JS': '<script>\njQuery(document.ready(function($)) {\n$(".wpc-configurator-wrap").addClass("customAccordion");\n});\n</script>\n', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/02/test-floor-and-design-6.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025/08'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025/08'}]}
+2025-08-02 00:47:50,174 - INFO - Application initialized successfully.
+2025-08-07 01:24:30,465 - INFO - Application initialized successfully.
+2025-08-07 01:24:55,606 - INFO - Application initialized successfully.
+2025-08-07 01:27:08,940 - INFO - Application initialized successfully.
+2025-08-07 01:29:05,229 - INFO - Application initialized successfully.
+2025-08-07 01:29:38,867 - INFO - Application initialized successfully.
