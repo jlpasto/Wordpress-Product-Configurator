@@ -286,3 +286,18 @@
 2025-08-07 01:51:22,207 - INFO - Sections data: 3
 2025-08-07 01:51:22,259 - INFO - Form submitted: {'Configurator Name': 'Sample Config 1', 'Style': 'accordion-2', 'Custom CSS': '', 'Custom JS': '<script>\njQuery(document.ready(function($)) {\n$(".wpc-configurator-wrap").addClass("customAccordion");\n});\n</script>\n', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/test-floor-and-design-6-scaled.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Background', 'Motif': '5', 'Motif No': 'Background', 'Date': '2025/08'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025/08'}, {'Section No': 'Section 3', 'Custom Class': 'productGroup group3', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025/08'}]}
 2025-08-07 02:07:48,873 - INFO - Application initialized successfully.
+2025-08-07 02:11:25,662 - INFO - Application initialized successfully.
+2025-08-07 02:13:03,603 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-07 02:13:03,609 - INFO - Added image input set #1
+2025-08-07 02:15:06,586 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-07 02:15:06,596 - INFO - Added image input set #2
+2025-08-07 02:15:41,352 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-07 02:15:41,357 - INFO - Added image input set #3
+2025-08-07 02:16:31,507 - INFO - Application initialized successfully.
+2025-08-07 02:17:07,023 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-07 02:17:07,036 - INFO - Added image input set #1
+2025-08-07 02:17:20,647 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-07 02:17:20,652 - INFO - Added image input set #2
+2025-08-07 02:18:40,615 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-07 02:18:40,619 - INFO - Sections data: 2
+2025-08-07 02:18:40,883 - INFO - Form submitted: {'Configurator Name': 'jhon-test-5', 'Style': 'accordion-2', 'Custom CSS': '', 'Custom JS': '', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/test-floor-and-design-6-scaled.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025/08'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025/08'}]}
