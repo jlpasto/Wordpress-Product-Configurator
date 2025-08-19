@@ -301,3 +301,8 @@
 2025-08-07 02:18:40,615 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
 2025-08-07 02:18:40,619 - INFO - Sections data: 2
 2025-08-07 02:18:40,883 - INFO - Form submitted: {'Configurator Name': 'jhon-test-5', 'Style': 'accordion-2', 'Custom CSS': '', 'Custom JS': '', 'Form': 'cart-form', 'Base Price': '15', 'Required': True, 'Hide Control': True, 'Group Layer Image URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/test-floor-and-design-6-scaled.png', 'Sections': [{'Section No': 'Section 1', 'Custom Class': 'productGroup group1', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-1', 'Motif': '5', 'Motif No': 'Motif 1', 'Date': '2025/08'}, {'Section No': 'Section 2', 'Custom Class': 'productGroup group2', 'Width': '1000', 'Height': '900', 'Product Type': 'Produit', 'Product URL': 'https://floor-and-design.fr/wp-content/uploads/2025/08/5-Motif-2', 'Motif': '5', 'Motif No': 'Motif 2', 'Date': '2025/08'}]}
+2025-08-19 16:09:49,625 - INFO - Application initialized successfully.
+2025-08-19 16:09:55,275 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-19 16:09:55,278 - INFO - Added image input set #1
+2025-08-19 16:10:07,684 - INFO - Successfully read 194 color entries from ../correspondance_rgba.csv
+2025-08-19 16:10:07,689 - INFO - Added image input set #2
