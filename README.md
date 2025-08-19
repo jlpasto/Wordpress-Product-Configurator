@@ -1,5 +1,7 @@
 # 🏆 Case Study: Automating Product Data Import for Sarl Floor and Design
 
+- A Python-based automation tool that streamlines product data import and color management for Wordpress, enabling Sarl Floor and Design to efficiently configure and update their e-commerce catalog with ease.
+
 ## 🏢 Client Overview
 
 **Company:** Sarl Floor and Design  
